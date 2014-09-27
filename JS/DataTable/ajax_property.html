@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+    <title>DataTables example - Ajax data source (arrays)</title>
+
+    <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+    <title>DataTables example - DOM positioning</title>
+    <link rel="stylesheet" type="text/css" href="./media/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="./resources/syntax/shCore.css">
+    <link rel="stylesheet" type="text/css" href="./resources/demo.css">
+    <style type="text/css" class="init">
+
+    </style>
+    <script type="text/javascript" language="javascript" src="./media/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="./media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="./resources/syntax/shCore.js"></script>
+    <script type="text/javascript" language="javascript" class="init">
+        (function(window,document,undefined){
+            $.fn.extend({
+                table: function(option) {
+
+                    if( option.hasOwnProperty('tags') && typeof(option.tags) == 'object'){
+                        var thead = $("<thead></thead>>");
+                        var tr = $("<tr></tr>");
+
+                        var tags = option.tags;
+                        var columns = [];
+                        for( k in tags){
+                            var column = {'data':k};
+                            if( typeof(tags[k]) == 'string'){
+                                tr.append('<th>' + tags[k] + '</th>')
+                            }else if(typeof(tags[k]) == 'object'){
+                                tr.append('<th>' + tags[k]['title'] + '</th>')
+                                delete tags[k].title;
+                                if( tags[k].hasOwnProperty('render') ){
+                                    var render = tags[k].render;
+                                    column.render = function(data, type, full, meta){
+                                        return render(data,full);
+                                    }
+                                    delete tags[k].render;
+                                }
+                                $.extend(true,column,tags[k]);
+                            }
+                            columns.push( column );
+                        }
+
+                        thead.append(tr);
+                        $(this).append(thead);
+
+                        option.columns = columns;
+                        delete option.tags;
+                    }
+
+                    options = {
+                        "bLengthChange": false,
+                        "bSort": false,
+                        "sPaginationType":"full_numbers",
+                        "bPaginate" : true,
+                        "iDisplayLength" : 10,
+                        "processing": true,
+                        "serverSide": true,
+                        "oLanguage": {
+                            "sProcessing": "正在加载中......",
+                            "sLengthMenu": "每页显示 _MENU_ 条记录",
+                            "sZeroRecords": "对不起，查询不到相关数据！",
+                            "sEmptyTable": "表中无数据存在！",
+                            "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+                            "sInfoFiltered": "数据表中共为 _MAX_ 条记录",
+                            "sSearch": "搜索",
+                            "oPaginate": {
+                                "sFirst": "首页",
+                                "sPrevious": "上一页",
+                                "sNext": "下一页",
+                                "sLast": "末页"
+                            }
+                        }
+                    };
+                    $.extend(true,options,option);
+                    $(this).dataTable(options);
+                }
+            });
+        }(window, document));
+
+        $(document).ready(function() {
+            $('#example').table( {
+                'tags':{
+                    'title' : {
+                        'title':'标题2',
+                        'render': function(data, full){
+                            return '<a href="#">'+ data +'</a>';
+                        }
+                    },
+                    'test' : '测试',
+                    'amount': '数量'
+                },
+                "iDisplayLength" : 5,
+                "ajax": {
+                    "url": "index.php",
+                    "type":'POST',
+                    "data": {
+                        'test' : 'test'
+                    }
+                }
+            } );
+        } );
+    </script>
+</head>
+<body>
+<table id="example" class="display" cellspacing="0" width="100%">
+</table>
+</body>
+</html>
