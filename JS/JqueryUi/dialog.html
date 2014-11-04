@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Bootstrap</title>
+    <!-- Le styles -->
+    <link href="../../CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+</head>
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+<div id="dialog-message" title="Modal Dialog">
+    <p>
+        <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+        Your files have downloaded successfully into the My Downloads folder.
+    </p>
+    <p>
+        Currently using <b>36% of your storage space</b>.
+    </p>
+</div>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="../../CSS/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        console.log('test')
+        // Dialog message
+        $("#dialog-message").dialog({
+            width: 600,
+            modal: true,
+            buttons: {
+                "确认": function () {
+                    alert('ok');
+                    $(this).dialog("close");
+                },
+                "取消": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

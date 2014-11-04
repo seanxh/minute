@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <!--<link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">-->
+
+    <!-- Custom styles for this template -->
+    <!--<link href="theme.css" rel="stylesheet">-->
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="./bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./bootstrap/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="./bootstrap/js/html5shiv.min.js"></script>
+    <script src="./bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        body{
+            background-color: #eeeeee;
+        }
+        .section{
+            width: 70%;
+            margin: 40px auto;
+            background: #FFFFFF;
+            box-shadow: 0 2px 40px 0 rgba(0, 0, 0, 0.4);
+            border-radius: 3px;
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+        .section li{
+            list-style: none;
+            padding: 15px 21px 15px 27px;
+            border-top: 1px solid #DFDFDF;
+            margin-bottom: 2px;
+        }
+        .section li .name{
+            text-align: left;
+            font-size: 15px;
+        }
+    </style>
+    <title>Althea---创建新监控</title>
+
+</head>
+
+<body class="ashley personal  create-widget prod">
+<div class="container">
+    <form class="form-horizontal" enctype="multipart/form-data" id="yw0" action="/index.php?r=app/index/add_app"
+          method="post">
+        <ul class="section">
+            <li class="sectionTitle">
+                <h2>创建监控</h2>
+            </li>
+
+
+            <li class="form-group">
+                <label class="name col-sm-2 control-label" for="bp_app_name">监控名称</label>
+                <div class="col-sm-10">
+                    <input placeholder="请输入监控名称" class="form-control" name="bp_app[name]" id="bp_app_name" type="text"
+                           maxlength="45" value=""/>
+                <span class="help-block">键入有标识性的监控的名称，方便查看与管理，可中文</span>
+                </div>
+            </li>
+            <li class="form-group">
+                <label class="name col-sm-2 control-label" for="bp_app_admin_username">数据源</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="MySQL"> MySQL
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="http"> HTTP
+                    </label>
+
+                </div>
+            </li>
+            <li class="form-group">
+                <label class="name col-sm-2 control-label" for="bp_app_admin_username">报警标题</label>
+                <div class="col-sm-10">
+                    <textarea placeholder="请输入应用描述信息" class="form-control" rows="2" cols="50" name="bp_app[description]"
+                              id="bp_app_description"></textarea>
+                    <span class="help-block">键入有标识性的监控的名称，方便查看与管理，可中文</span>
+                </div>
+            </li>
+            <li class="form-group">
+                <label class="name col-sm-2 control-label" for="bp_app_description">报警内容</label>
+
+                <div class="col-sm-10">
+                    <textarea placeholder="请输入应用描述信息" class="form-control" rows="2" cols="50" name="bp_app[description]"
+                              id="bp_app_description"></textarea></div>
+            </li>
+            <li class="sectionConfirm">
+                <span class="col-lg-10"></span>
+                <button type="button"  class="btn btn-success"><i class="icon-ok icon-white"></i>
+                    创建
+                </button>
+                <button class="btn btn-warning">
+                    重置
+                </button>
+            </li>
+        </ul>
+    </form>
+</div>
+
+</body>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="./bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+</html>
