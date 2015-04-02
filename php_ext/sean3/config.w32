@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("sean3", "for sean3 support", "no");
+
+// Otherwise, use ARG_ENABLE
+// ARG_ENABLE("sean3", "enable sean3 support", "no");
+
+if (PHP_SEAN3 != "no") {
+	EXTENSION("sean3", "sean3.c");
+}
+
