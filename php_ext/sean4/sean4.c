@@ -47,7 +47,7 @@ const zend_function_entry sean4_functions[] = {
 
 /* {{{ sean4_module_entry
  */
-zend_module_entry sean4_module_entry = {
+zend_module_entry q = {
 #if ZEND_MODULE_API_NO >= 20010901
 	STANDARD_MODULE_HEADER,
 #endif
@@ -218,6 +218,7 @@ int php_print_r_zval_and_key(zval **val,int num_args,va_list args,zend_hash_key 
     zend_call_function(&fci, NULL TSRMLS_CC);
     
     php_printf("\n");
+    zval_dtor(function);
     
     //毁尸灭迹
     zval_dtor(&tmpcopy);
