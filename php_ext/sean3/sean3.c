@@ -202,7 +202,20 @@ PHP_FUNCTION(sean3_get_globals){
     zval *testval;
     MAKE_STD_ZVAL(testval);
     ZVAL_STRING(testval, "test", 1);
+    
+    
+    
     ZEND_SET_SYMBOL(&EG(symbol_table),"foo",testval);
+    
+    /*
+    zval **orig_var;
+    if (zend_hash_find(&EG(symbol_table), "foo", sizeof("foo"), (void **) &orig_var)==SUCCESS){
+        efree(*orig_var);
+        zend_hash_update(&EG(symbol_table), "foo", sizeof("foo"),&testval, sizeof(zval*), NULL);
+    }else{
+        zend_hash_add(&EG(symbol_table), "foo", sizeof("foo"), &testval, sizeof(zval*), NULL);
+    }
+    */
 }
 
 
